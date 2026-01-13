@@ -101,10 +101,10 @@ function Navigation() {
     }, []);
 
     const navLinks = [
-        { href: "#about", label: "About" },
-        { href: "#projects", label: "Projects" },
-        { href: "#skills", label: "Skills" },
-        { href: "#contact", label: "Contact" },
+        { href: "#about", label: "Sobre Mí" },
+        { href: "#projects", label: "Proyectos" },
+        { href: "#skills", label: "Habilidades" },
+        { href: "#contact", label: "Contacto" },
     ];
 
     return (
@@ -285,7 +285,7 @@ function Hero() {
                         }}
                     >
                         <span style={{ width: "8px", height: "8px", background: "#22c55e", borderRadius: "50%", animation: "pulse 2s infinite" }}></span>
-                        Available for freelance work
+                        Disponible para proyectos freelance
                     </div>
 
                     <h1
@@ -297,10 +297,7 @@ function Hero() {
                             marginBottom: "1.5rem",
                         }}
                     >
-                        I craft{" "}
-                        <span className="gradient-text">digital experiences</span>
-                        <br />
-                        that inspire
+                        Transformando <span className="gradient-text">ideas en Experiencias</span> Digitales
                     </h1>
 
                     <p
@@ -308,13 +305,12 @@ function Hero() {
                         style={{
                             fontSize: "1.25rem",
                             color: "rgba(255,255,255,0.7)",
-                            maxWidth: "500px",
+                            maxWidth: "550px",
                             marginBottom: "2.5rem",
                             lineHeight: 1.7,
                         }}
                     >
-                        Full-stack developer passionate about creating beautiful, performant web applications
-                        with modern technologies and exceptional user experiences.
+                        Desarrollador Full Stack especializado en construir aplicaciones web modernas, escalables y de alto impacto visual.
                     </p>
 
                     <div
@@ -327,11 +323,11 @@ function Hero() {
                         }}
                     >
                         <a href="#projects" className="btn-primary">
-                            View My Work
+                            Ver Mis Proyectos
                             <ArrowDownIcon />
                         </a>
                         <a href="#contact" className="btn-secondary">
-                            Get in Touch
+                            Contáctame
                         </a>
                     </div>
 
@@ -507,96 +503,238 @@ function Hero() {
 
 // About Section
 function About() {
+    const services = [
+        {
+            icon: <CodeIcon />,
+            title: "Desarrollo Frontend",
+            desc: "Creando interfaces interactivas y responsivas con React, Next.js y Tailwind.",
+            gradient: "linear-gradient(135deg, #8b5cf6, #06b6d4)"
+        },
+        {
+            icon: <ServerIcon />,
+            title: "Arquitectura Backend",
+            desc: "Construyendo APIs robustas y escalables con Node.js y Python.",
+            gradient: "linear-gradient(135deg, #06b6d4, #8b5cf6)"
+        },
+        {
+            icon: <PaletteIcon />,
+            title: "Diseño UI/UX",
+            desc: "Diseñando experiencias de usuario intuitivas, accesibles y hermosas.",
+            gradient: "linear-gradient(135deg, #4f46e5, #06b6d4)"
+        },
+    ];
+
     const stats = [
-        { number: "5+", label: "Years Experience" },
-        { number: "50+", label: "Projects Completed" },
-        { number: "30+", label: "Happy Clients" },
-        { number: "99%", label: "Client Satisfaction" },
+        { number: "5+", label: "Años" },
+        { number: "50+", label: "Proyectos" },
+        { number: "30+", label: "Clientes" },
     ];
 
     return (
         <section id="about" className="section">
             <div className="container">
-                <h2 className="section-title">
-                    About <span className="gradient-text">Me</span>
-                </h2>
-                <p className="section-subtitle">
-                    Turning complex problems into elegant solutions through code and creativity
-                </p>
-
                 <div
                     style={{
                         display: "grid",
-                        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                        gap: "2rem",
-                        marginBottom: "4rem",
+                        gridTemplateColumns: "1fr 1.2fr",
+                        gap: "4rem",
+                        alignItems: "center",
                     }}
+                    className="about-grid"
                 >
-                    <div className="glass glass-hover" style={{ padding: "2rem" }}>
-                        <div className="icon-wrapper" style={{ marginBottom: "1.5rem" }}>
-                            <CodeIcon />
-                        </div>
-                        <h3 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "1rem" }}>
-                            Frontend Development
-                        </h3>
-                        <p style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}>
-                            Creating responsive, accessible, and performant user interfaces with React, Next.js, and modern CSS frameworks.
-                        </p>
-                    </div>
+                    {/* Left Side - Image */}
+                    <div
+                        style={{
+                            position: "relative",
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
+                    >
+                        {/* Glowing background */}
+                        <div
+                            style={{
+                                position: "absolute",
+                                width: "80%",
+                                height: "80%",
+                                background: "linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(6, 182, 212, 0.3))",
+                                borderRadius: "50%",
+                                filter: "blur(50px)",
+                                top: "50%",
+                                left: "50%",
+                                transform: "translate(-50%, -50%)",
+                            }}
+                        />
 
-                    <div className="glass glass-hover" style={{ padding: "2rem" }}>
-                        <div className="icon-wrapper" style={{ marginBottom: "1.5rem", background: "linear-gradient(135deg, #06b6d4, #8b5cf6)" }}>
-                            <ServerIcon />
-                        </div>
-                        <h3 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "1rem" }}>
-                            Backend Development
-                        </h3>
-                        <p style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}>
-                            Building scalable APIs and server-side applications with Node.js, Python, and cloud infrastructure.
-                        </p>
-                    </div>
-
-                    <div className="glass glass-hover" style={{ padding: "2rem" }}>
-                        <div className="icon-wrapper" style={{ marginBottom: "1.5rem", background: "linear-gradient(135deg, #4f46e5, #06b6d4)" }}>
-                            <PaletteIcon />
-                        </div>
-                        <h3 style={{ fontSize: "1.25rem", fontWeight: 700, marginBottom: "1rem" }}>
-                            UI/UX Design
-                        </h3>
-                        <p style={{ color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}>
-                            Designing intuitive user experiences with attention to detail, accessibility, and modern design principles.
-                        </p>
-                    </div>
-                </div>
-
-                <div
-                    className="glass"
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-                        gap: "1rem",
-                        padding: "2rem",
-                    }}
-                >
-                    {stats.map((stat, index) => (
-                        <div key={index} style={{ textAlign: "center", padding: "1rem" }}>
-                            <div
-                                className="gradient-text"
+                        {/* Image container */}
+                        <div
+                            style={{
+                                position: "relative",
+                                padding: "6px",
+                                background: "rgba(255, 255, 255, 0.08)",
+                                backdropFilter: "blur(20px)",
+                                border: "1px solid rgba(255, 255, 255, 0.15)",
+                                borderRadius: "24px",
+                                boxShadow: "0 25px 60px rgba(139, 92, 246, 0.2), 0 10px 30px rgba(0, 0, 0, 0.3)",
+                            }}
+                        >
+                            <img
+                                src="/me2.jpeg"
+                                alt="About Me"
                                 style={{
-                                    fontSize: "2.5rem",
-                                    fontWeight: 800,
-                                    marginBottom: "0.5rem",
+                                    width: "360px",
+                                    height: "450px",
+                                    objectFit: "cover",
+                                    borderRadius: "20px",
+                                    display: "block",
+                                }}
+                            />
+
+                            {/* Decorative floating elements */}
+                            <div
+                                style={{
+                                    position: "absolute",
+                                    top: "-15px",
+                                    right: "-15px",
+                                    width: "60px",
+                                    height: "60px",
+                                    background: "linear-gradient(135deg, #8b5cf6, #06b6d4)",
+                                    borderRadius: "16px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    boxShadow: "0 10px 30px rgba(139, 92, 246, 0.4)",
                                 }}
                             >
-                                {stat.number}
-                            </div>
-                            <div style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.9rem" }}>
-                                {stat.label}
+                                <RocketIcon />
                             </div>
                         </div>
-                    ))}
+                    </div>
+
+                    {/* Right Side - Content */}
+                    <div>
+                        <h2
+                            style={{
+                                fontSize: "clamp(2rem, 4vw, 3rem)",
+                                fontWeight: 800,
+                                marginBottom: "1rem",
+                                lineHeight: 1.2,
+                            }}
+                        >
+                            Sobre <span className="gradient-text">Mí</span>
+                        </h2>
+
+                        <p
+                            style={{
+                                color: "rgba(255,255,255,0.7)",
+                                fontSize: "1.1rem",
+                                lineHeight: 1.8,
+                                marginBottom: "2.5rem",
+                            }}
+                        >
+                            Soy un desarrollador full-stack apasionado por convertir problemas complejos
+                            en soluciones elegantes y amigables. Con experiencia en tecnologías web modernas,
+                            creo experiencias digitales hermosas y de alto rendimiento.
+                        </p>
+
+                        {/* Services Expanded Cards */}
+                        <div
+                            style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "1rem",
+                                marginBottom: "2.5rem",
+                            }}
+                        >
+                            {services.map((service, index) => (
+                                <div
+                                    key={index}
+                                    className="glass"
+                                    style={{
+                                        padding: "1.25rem",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "1.25rem",
+                                        borderRadius: "16px",
+                                        transition: "all 0.3s ease",
+                                        cursor: "default",
+                                        border: "1px solid rgba(255,255,255,0.05)",
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = "translateX(10px)";
+                                        e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                                        e.currentTarget.style.borderColor = "rgba(139, 92, 246, 0.3)";
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = "translateX(0)";
+                                        e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                                        e.currentTarget.style.borderColor = "rgba(255,255,255,0.05)";
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            width: "48px",
+                                            height: "48px",
+                                            background: service.gradient,
+                                            borderRadius: "12px",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            color: "white",
+                                            flexShrink: 0,
+                                            boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+                                        }}
+                                    >
+                                        {service.icon}
+                                    </div>
+                                    <div>
+                                        <h4 style={{ fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.25rem" }}>{service.title}</h4>
+                                        <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", margin: 0 }}>{service.desc}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Stats */}
+                        <div
+                            className="glass"
+                            style={{
+                                display: "flex",
+                                gap: "2rem",
+                                padding: "1.5rem 2rem",
+                                borderRadius: "16px",
+                                justifyContent: "space-around",
+                            }}
+                        >
+                            {stats.map((stat, index) => (
+                                <div key={index} style={{ textAlign: "center" }}>
+                                    <div
+                                        className="gradient-text"
+                                        style={{
+                                            fontSize: "2rem",
+                                            fontWeight: 800,
+                                            lineHeight: 1,
+                                        }}
+                                    >
+                                        {stat.number}
+                                    </div>
+                                    <div style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.85rem", marginTop: "0.25rem" }}>
+                                        {stat.label}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <style jsx>{`
+                @media (max-width: 900px) {
+                    .about-grid {
+                        grid-template-columns: 1fr !important;
+                        text-align: center;
+                    }
+                }
+            `}</style>
         </section>
     );
 }
@@ -605,140 +743,263 @@ function About() {
 function Projects() {
     const projects = [
         {
-            title: "E-Commerce Platform",
-            description: "A full-featured online store with real-time inventory, payment processing, and admin dashboard.",
-            image: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-            tags: ["Next.js", "Stripe", "PostgreSQL"],
-            github: "https://github.com",
+            title: "Penguin Academy",
+            description: "Plataforma educativa especializada en Inteligencia Artificial, programación y matemáticas aplicadas.",
+            image: "/proyecto1.png",
+            tags: ["Next.js", "React", "TypeScript", "Tailwind"],
             live: "https://example.com",
         },
         {
-            title: "AI Dashboard",
-            description: "Analytics dashboard powered by machine learning for real-time data visualization and insights.",
-            image: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-            tags: ["React", "Python", "TensorFlow"],
-            github: "https://github.com",
+            title: "TREEJS",
+            description: "Aplicación web interactiva con animaciones 3D creadas con ThreeJS.",
+            image: "/proyecto2.png",
+            tags: ["ThreeJS", "JavaScript", "WebGL", "3D"],
             live: "https://example.com",
         },
         {
-            title: "Social Media App",
-            description: "A modern social platform with real-time messaging, stories, and content sharing features.",
-            image: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-            tags: ["React Native", "Firebase", "Node.js"],
-            github: "https://github.com",
+            title: "Entropy Evolve",
+            description: "Sistema de automejora para agentes de IA, diseñado para dominios complejos con ingeniería de software.",
+            image: "/proyecto3.png",
+            tags: ["Python", "AI", "Machine Learning"],
             live: "https://example.com",
         },
         {
-            title: "Fintech Solution",
-            description: "Secure banking application with advanced encryption and multi-factor authentication.",
-            image: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
-            tags: ["Vue.js", "Go", "AWS"],
-            github: "https://github.com",
+            title: "Metro CDMX",
+            description: "Calculador de rutas óptimas para el sistema de transporte colectivo Metro de la Ciudad de México.",
+            image: "/proyecto4.png",
+            tags: ["Algorithms", "Graph Theory", "React"],
+            live: "https://example.com",
+        },
+        {
+            title: "Portafolios Web",
+            description: "Colección de diseños de portafolios web modernos, interactivos y totalmente responsivos.",
+            image: "/proyecto5.png",
+            tags: ["Web Design", "Next.js", "Animations"],
+            live: "https://example.com",
+        },
+        {
+            title: "Tutor Inteligente",
+            description: "Plataforma web inteligente para crear evaluaciones académicas mediante inteligencia artificial.",
+            image: "/proyecto6.png",
+            tags: ["AI", "Education", "Machine Learning"],
             live: "https://example.com",
         },
     ];
 
     return (
-        <section id="projects" className="section" style={{ background: "rgba(0,0,0,0.2)" }}>
+        <section id="projects" className="section">
             <div className="container">
                 <h2 className="section-title">
-                    Featured <span className="gradient-text">Projects</span>
+                    Mis <span className="gradient-text">Proyectos</span>
                 </h2>
                 <p className="section-subtitle">
-                    A selection of projects that showcase my skills and passion for development
+                    Una selección de mis trabajos recientes y experimentos técnicos
                 </p>
 
-                <div className="grid-2">
-                    {projects.map((project, index) => (
-                        <div
-                            key={index}
-                            className="glass glass-hover"
-                            style={{ overflow: "hidden" }}
-                        >
-                            <div
+                {/* Bento Grid Layout */}
+                <div
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(12, 1fr)",
+                        gridTemplateRows: "auto",
+                        gap: "1.5rem",
+                    }}
+                    className="projects-bento"
+                >
+                    {projects.map((project, index) => {
+                        // Define grid spans for bento layout
+                        const spans: { [key: number]: { col: string; row: string; height: string } } = {
+                            0: { col: "span 8", row: "span 1", height: "400px" },
+                            1: { col: "span 4", row: "span 1", height: "400px" },
+                            2: { col: "span 4", row: "span 1", height: "350px" },
+                            3: { col: "span 4", row: "span 1", height: "350px" },
+                            4: { col: "span 4", row: "span 1", height: "350px" },
+                            5: { col: "span 12", row: "span 1", height: "300px" },
+                        };
+                        const span = spans[index] || { col: "span 4", row: "span 1", height: "350px" };
+
+                        return (
+                            <a
+                                key={index}
+                                href={project.live}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-card"
                                 style={{
-                                    height: "200px",
-                                    background: project.image,
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
+                                    gridColumn: span.col,
+                                    gridRow: span.row,
+                                    height: span.height,
+                                    position: "relative",
+                                    borderRadius: "24px",
+                                    overflow: "hidden",
+                                    textDecoration: "none",
+                                    display: "block",
+                                    cursor: "pointer",
                                 }}
                             >
-                                <RocketIcon />
-                            </div>
-                            <div style={{ padding: "1.5rem" }}>
-                                <h3
+                                {/* Background Image */}
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="project-bg"
                                     style={{
-                                        fontSize: "1.25rem",
-                                        fontWeight: 700,
-                                        marginBottom: "0.75rem",
+                                        position: "absolute",
+                                        inset: 0,
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "cover",
+                                        transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
                                     }}
-                                >
-                                    {project.title}
-                                </h3>
-                                <p
+                                />
+
+                                {/* Gradient Overlay */}
+                                <div
+                                    className="project-overlay"
                                     style={{
-                                        color: "rgba(255,255,255,0.7)",
-                                        marginBottom: "1rem",
-                                        lineHeight: 1.6,
+                                        position: "absolute",
+                                        inset: 0,
+                                        background: "linear-gradient(180deg, transparent 30%, rgba(15, 15, 35, 0.95) 100%)",
+                                        transition: "opacity 0.4s ease",
                                     }}
-                                >
-                                    {project.description}
-                                </p>
+                                />
+
+                                {/* Hover Glow Effect */}
+                                <div
+                                    className="project-glow"
+                                    style={{
+                                        position: "absolute",
+                                        inset: 0,
+                                        background: "linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.2))",
+                                        opacity: 0,
+                                        transition: "opacity 0.4s ease",
+                                    }}
+                                />
+
+                                {/* Content */}
                                 <div
                                     style={{
-                                        display: "flex",
-                                        flexWrap: "wrap",
-                                        gap: "0.5rem",
-                                        marginBottom: "1.5rem",
+                                        position: "absolute",
+                                        bottom: 0,
+                                        left: 0,
+                                        right: 0,
+                                        padding: "2rem",
+                                        zIndex: 2,
                                     }}
                                 >
-                                    {project.tags.map((tag, tagIndex) => (
-                                        <span key={tagIndex} className="tech-badge">
-                                            {tag}
-                                        </span>
-                                    ))}
-                                </div>
-                                <div style={{ display: "flex", gap: "1rem" }}>
-                                    <a
-                                        href={project.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                    {/* Tags */}
+                                    <div
                                         style={{
                                             display: "flex",
-                                            alignItems: "center",
+                                            flexWrap: "wrap",
                                             gap: "0.5rem",
-                                            color: "rgba(255,255,255,0.8)",
-                                            fontSize: "0.9rem",
-                                            transition: "color 0.3s ease",
+                                            marginBottom: "1rem",
                                         }}
-                                        onMouseEnter={(e) => (e.currentTarget.style.color = "#8b5cf6")}
-                                        onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
                                     >
-                                        <GithubIcon /> Code
-                                    </a>
-                                    <a
-                                        href={project.live}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        {project.tags.slice(0, 3).map((tag, i) => (
+                                            <span
+                                                key={i}
+                                                style={{
+                                                    fontSize: "0.7rem",
+                                                    padding: "0.35rem 0.75rem",
+                                                    background: "rgba(255,255,255,0.1)",
+                                                    backdropFilter: "blur(8px)",
+                                                    borderRadius: "999px",
+                                                    color: "rgba(255,255,255,0.9)",
+                                                    fontWeight: 500,
+                                                }}
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    {/* Title */}
+                                    <h3
                                         style={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            gap: "0.5rem",
-                                            color: "rgba(255,255,255,0.8)",
-                                            fontSize: "0.9rem",
-                                            transition: "color 0.3s ease",
+                                            fontSize: index === 0 || index === 5 ? "2rem" : "1.5rem",
+                                            fontWeight: 800,
+                                            marginBottom: "0.5rem",
+                                            color: "white",
+                                            lineHeight: 1.2,
                                         }}
-                                        onMouseEnter={(e) => (e.currentTarget.style.color = "#06b6d4")}
-                                        onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
                                     >
-                                        <ExternalLinkIcon /> Live Demo
-                                    </a>
+                                        {project.title}
+                                    </h3>
+
+                                    {/* Description */}
+                                    <p
+                                        className="project-desc"
+                                        style={{
+                                            color: "rgba(255,255,255,0.7)",
+                                            fontSize: "0.95rem",
+                                            lineHeight: 1.6,
+                                            maxHeight: 0,
+                                            overflow: "hidden",
+                                            opacity: 0,
+                                            transition: "all 0.4s ease",
+                                        }}
+                                    >
+                                        {project.description}
+                                    </p>
                                 </div>
-                            </div>
-                        </div>
-                    ))}
+
+                                {/* Arrow Icon */}
+                                <div
+                                    className="project-arrow"
+                                    style={{
+                                        position: "absolute",
+                                        top: "1.5rem",
+                                        right: "1.5rem",
+                                        width: "48px",
+                                        height: "48px",
+                                        background: "rgba(255,255,255,0.1)",
+                                        backdropFilter: "blur(8px)",
+                                        borderRadius: "50%",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        color: "white",
+                                        opacity: 0,
+                                        transform: "translate(10px, -10px)",
+                                        transition: "all 0.4s ease",
+                                    }}
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                                    </svg>
+                                </div>
+                            </a>
+                        );
+                    })}
                 </div>
+
+                <style jsx>{`
+                    .project-card:hover .project-bg {
+                        transform: scale(1.1);
+                    }
+                    .project-card:hover .project-glow {
+                        opacity: 1;
+                    }
+                    .project-card:hover .project-desc {
+                        max-height: 100px;
+                        opacity: 1;
+                        margin-top: 0.5rem;
+                    }
+                    .project-card:hover .project-arrow {
+                        opacity: 1;
+                        transform: translate(0, 0);
+                    }
+                    @media (max-width: 900px) {
+                        .projects-bento {
+                            display: flex !important;
+                            flex-direction: column !important;
+                        }
+                        .project-card {
+                            grid-column: span 12 !important;
+                            height: 300px !important;
+                        }
+                    }
+                `}</style>
             </div>
         </section>
     );
@@ -748,16 +1009,16 @@ function Projects() {
 function Skills() {
     const skillCategories = [
         {
-            title: "Frontend",
-            skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "SASS"],
+            title: "Frontend & UI",
+            skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "ThreeJS", "Figma"],
         },
         {
-            title: "Backend",
-            skills: ["Node.js", "Python", "PostgreSQL", "MongoDB", "GraphQL", "REST APIs"],
+            title: "Backend & Cloud",
+            skills: ["Node.js", "Python", "Django", "PostgreSQL", "AWS", "Docker"],
         },
         {
-            title: "Tools & Cloud",
-            skills: ["Git", "Docker", "AWS", "Vercel", "Figma", "CI/CD"],
+            title: "IA & Algoritmos",
+            skills: ["Machine Learning", "TensorFlow", "AI Agents", "Graph Theory", "Algorithms", "Python"],
         },
     ];
 
@@ -765,10 +1026,10 @@ function Skills() {
         <section id="skills" className="section">
             <div className="container">
                 <h2 className="section-title">
-                    Skills & <span className="gradient-text">Technologies</span>
+                    Habilidades y <span className="gradient-text">Tecnologías</span>
                 </h2>
                 <p className="section-subtitle">
-                    The tools and technologies I use to bring ideas to life
+                    Las herramientas y tecnologías que utilizo para dar vida a las ideas
                 </p>
 
                 <div className="grid-3">
@@ -837,7 +1098,7 @@ function Contact() {
         e.preventDefault();
         // Handle form submission
         console.log(formData);
-        alert("Thanks for reaching out! I'll get back to you soon.");
+        alert("¡Gracias por contactarme! Te responderé pronto.");
         setFormData({ name: "", email: "", message: "" });
     };
 
@@ -845,10 +1106,10 @@ function Contact() {
         <section id="contact" className="section" style={{ background: "rgba(0,0,0,0.2)" }}>
             <div className="container">
                 <h2 className="section-title">
-                    Let's <span className="gradient-text">Connect</span>
+                    ¿Hablamos? <span className="gradient-text">Contáctame</span>
                 </h2>
                 <p className="section-subtitle">
-                    Have a project in mind? I'd love to hear about it. Let's create something amazing together.
+                    ¿Tienes un proyecto en mente? Me encantaría escucharte. Creemos algo increíble juntos.
                 </p>
 
                 <div
@@ -870,7 +1131,7 @@ function Contact() {
                                     color: "rgba(255,255,255,0.8)",
                                 }}
                             >
-                                Name
+                                Nombre
                             </label>
                             <input
                                 type="text"
@@ -904,7 +1165,7 @@ function Contact() {
                                     color: "rgba(255,255,255,0.8)",
                                 }}
                             >
-                                Email
+                                Correo Electrónico
                             </label>
                             <input
                                 type="email"
@@ -938,7 +1199,7 @@ function Contact() {
                                     color: "rgba(255,255,255,0.8)",
                                 }}
                             >
-                                Message
+                                Mensaje
                             </label>
                             <textarea
                                 id="message"
@@ -969,7 +1230,7 @@ function Contact() {
                             className="btn-primary"
                             style={{ width: "100%", justifyContent: "center" }}
                         >
-                            Send Message
+                            Enviar Mensaje
                             <EmailIcon />
                         </button>
                     </form>
@@ -1032,7 +1293,7 @@ function Footer() {
                     </a>
                 </div>
                 <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.875rem" }}>
-                    © {new Date().getFullYear()} Developer. All rights reserved.
+                    © {new Date().getFullYear()} Desarrollador. Todos los derechos reservados.
                 </p>
             </div>
         </footer>
@@ -1041,8 +1302,20 @@ function Footer() {
 
 // Main Page Component
 export default function Home() {
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        setIsLoaded(true);
+    }, []);
+
     return (
-        <main>
+        <main
+            style={{
+                filter: isLoaded ? "blur(0)" : "blur(20px)",
+                opacity: isLoaded ? 1 : 0,
+                transition: "filter 1.5s ease-out, opacity 1.5s ease-out",
+            }}
+        >
             <Navigation />
             <Hero />
             <About />
