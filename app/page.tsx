@@ -1,6 +1,51 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
+// Reveal on Scroll Component
+function RevealOnScroll({ children }: { children: React.ReactNode }) {
+    const [isVisible, setIsVisible] = useState(false);
+    const ref = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.unobserve(entry.target);
+                }
+            },
+            {
+                threshold: 0.1,
+                rootMargin: "50px",
+            }
+        );
+
+        if (ref.current) {
+            observer.observe(ref.current);
+        }
+
+        return () => {
+            if (ref.current) {
+                observer.unobserve(ref.current);
+            }
+        };
+    }, []);
+
+    return (
+        <div
+            ref={ref}
+            style={{
+                filter: isVisible ? "blur(0)" : "blur(10px)",
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "all 1s cubic-bezier(0.2, 0.8, 0.2, 1)",
+            }}
+        >
+            {children}
+        </div>
+    );
+}
 
 // Icons as SVG components
 const CodeIcon = () => (
@@ -141,7 +186,7 @@ function Navigation() {
                         WebkitTextFillColor: "transparent",
                     }}
                 >
-                    {"<Dev />"}
+                    {"<Luis Cortes />"}
                 </a>
 
                 {/* Desktop Navigation */}
@@ -1309,20 +1354,30 @@ export default function Home() {
     }, []);
 
     return (
-        <main
-            style={{
-                filter: isLoaded ? "blur(0)" : "blur(20px)",
-                opacity: isLoaded ? 1 : 0,
-                transition: "filter 1.5s ease-out, opacity 1.5s ease-out",
-            }}
-        >
+        <>
             <Navigation />
-            <Hero />
-            <About />
-            <Projects />
-            <Skills />
-            <Contact />
-            <Footer />
-        </main>
+            <main
+                style={{
+                    filter: isLoaded ? "blur(0)" : "blur(20px)",
+                    opacity: isLoaded ? 1 : 0,
+                    transition: "filter 1.5s ease-out, opacity 1.5s ease-out",
+                }}
+            >
+                <Hero />
+                <RevealOnScroll>
+                    <About />
+                </RevealOnScroll>
+                <RevealOnScroll>
+                    <Projects />
+                </RevealOnScroll>
+                <RevealOnScroll>
+                    <Skills />
+                </RevealOnScroll>
+                <RevealOnScroll>
+                    <Contact />
+                </RevealOnScroll>
+                <Footer />
+            </main>
+        </>
     );
 }
