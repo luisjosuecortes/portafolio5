@@ -47,6 +47,102 @@ function RevealOnScroll({ children }: { children: React.ReactNode }) {
     );
 }
 
+// Custom Cursor Component
+function CustomCursor() {
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [isVisible, setIsVisible] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            setPosition({ x: e.clientX, y: e.clientY });
+            setIsVisible(true);
+        };
+
+        const handleMouseLeave = () => {
+            setIsVisible(false);
+        };
+
+        const handleMouseEnter = () => {
+            setIsVisible(true);
+        };
+
+        // Detect hoverable elements
+        const handleHoverStart = () => setIsHovering(true);
+        const handleHoverEnd = () => setIsHovering(false);
+
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseleave", handleMouseLeave);
+        document.addEventListener("mouseenter", handleMouseEnter);
+
+        // Add hover detection to interactive elements
+        const interactiveElements = document.querySelectorAll("a, button, input, textarea, [role='button']");
+        interactiveElements.forEach((el) => {
+            el.addEventListener("mouseenter", handleHoverStart);
+            el.addEventListener("mouseleave", handleHoverEnd);
+        });
+
+        return () => {
+            document.removeEventListener("mousemove", handleMouseMove);
+            document.removeEventListener("mouseleave", handleMouseLeave);
+            document.removeEventListener("mouseenter", handleMouseEnter);
+            interactiveElements.forEach((el) => {
+                el.removeEventListener("mouseenter", handleHoverStart);
+                el.removeEventListener("mouseleave", handleHoverEnd);
+            });
+        };
+    }, []);
+
+    return (
+        <>
+            {/* Outer Ring */}
+            <div
+                style={{
+                    position: "fixed",
+                    left: position.x,
+                    top: position.y,
+                    width: isHovering ? "50px" : "40px",
+                    height: isHovering ? "50px" : "40px",
+                    border: "2px solid",
+                    borderColor: "rgba(139, 92, 246, 0.6)",
+                    borderRadius: "50%",
+                    pointerEvents: "none",
+                    transform: "translate(-50%, -50%)",
+                    transition: "width 0.2s ease, height 0.2s ease, opacity 0.2s ease",
+                    opacity: isVisible ? 1 : 0,
+                    zIndex: 9999,
+                    mixBlendMode: "difference",
+                }}
+            />
+            {/* Inner Dot */}
+            <div
+                style={{
+                    position: "fixed",
+                    left: position.x,
+                    top: position.y,
+                    width: isHovering ? "32px" : "16px",
+                    height: isHovering ? "32px" : "16px",
+                    background: "rgba(255, 255, 255, 0.01)",
+                    backdropFilter: "brightness(1.2) contrast(1.1)",
+                    border: "1px solid rgba(255, 255, 255, 0.3)",
+                    boxShadow: "inset 0 0 20px rgba(255, 255, 255, 0.1), 0 0 10px rgba(139, 92, 246, 0.2)",
+                    borderRadius: "50%",
+                    pointerEvents: "none",
+                    transform: "translate(-50%, -50%)",
+                    transition: "width 0.15s ease, height 0.15s ease, opacity 0.2s ease, background 0.2s ease",
+                    opacity: isVisible ? 1 : 0,
+                    zIndex: 9999,
+                }}
+            />
+            <style jsx global>{`
+                * {
+                    cursor: none !important;
+                }
+            `}</style>
+        </>
+    );
+}
+
 // Icons as SVG components
 const CodeIcon = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -146,8 +242,8 @@ function Navigation() {
     }, []);
 
     const navLinks = [
-        { href: "#about", label: "Sobre Mí" },
         { href: "#projects", label: "Proyectos" },
+        { href: "#about", label: "Sobre Mí" },
         { href: "#skills", label: "Habilidades" },
         { href: "#contact", label: "Contacto" },
     ];
@@ -179,14 +275,14 @@ function Navigation() {
                 <a
                     href="#"
                     style={{
-                        fontSize: "1.5rem",
+                        fontSize: "1.2rem",
                         fontWeight: 800,
                         background: "linear-gradient(135deg, #8b5cf6, #06b6d4)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                     }}
                 >
-                    {"<Luis Cortes />"}
+                    {"<Luis Cortes>"}
                 </a>
 
                 {/* Desktop Navigation */}
@@ -1050,6 +1146,134 @@ function Projects() {
     );
 }
 
+// Community Section
+function Community() {
+    const groups = [
+        {
+            name: "Telegram",
+            image: "/telegram.jpg",
+            color: "#0088cc",
+            description: "Únete a nuestra comunidad en Telegram",
+        },
+        {
+            name: "WhatsApp",
+            image: "/Whatsapp.jpg",
+            color: "#25D366",
+            description: "Únete a nuestro grupo de WhatsApp",
+        },
+    ];
+
+    return (
+        <section
+            id="community"
+            className="section"
+            style={{
+                background: "linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, transparent 100%)",
+                padding: "6rem 1.5rem",
+            }}
+        >
+            <div className="container" style={{ textAlign: "center" }}>
+                <h2 className="section-title">
+                    ¡Únete a la <span className="gradient-text">Comunidad</span>!
+                </h2>
+                <p
+                    className="section-subtitle"
+                    style={{
+                        fontSize: "1.3rem",
+                        maxWidth: "600px",
+                        margin: "0 auto 3rem",
+                    }}
+                >
+                    Escanea el código QR y sé parte de nuestra comunidad de desarrolladores 🚀
+                </p>
+
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "3rem",
+                        flexWrap: "wrap",
+                    }}
+                >
+                    {groups.map((group, index) => (
+                        <div
+                            key={index}
+                            className="glass"
+                            style={{
+                                padding: "2rem",
+                                borderRadius: "24px",
+                                textAlign: "center",
+                                transition: "all 0.4s ease",
+                                border: `2px solid ${group.color}30`,
+                                background: "rgba(255, 255, 255, 0.03)",
+                                minWidth: "280px",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = "translateY(-10px) scale(1.02)";
+                                e.currentTarget.style.boxShadow = `0 20px 60px ${group.color}30`;
+                                e.currentTarget.style.borderColor = `${group.color}60`;
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = "translateY(0) scale(1)";
+                                e.currentTarget.style.boxShadow = "none";
+                                e.currentTarget.style.borderColor = `${group.color}30`;
+                            }}
+                        >
+                            <div
+                                style={{
+                                    width: "220px",
+                                    margin: "0 auto 1.5rem",
+                                    borderRadius: "16px",
+                                    overflow: "hidden",
+                                }}
+                            >
+                                <img
+                                    src={group.image}
+                                    alt={`QR ${group.name}`}
+                                    style={{
+                                        width: "100%",
+                                        height: "auto",
+                                        display: "block",
+                                        borderRadius: "8px",
+                                    }}
+                                />
+                            </div>
+                            <h3
+                                style={{
+                                    fontSize: "1.5rem",
+                                    fontWeight: 700,
+                                    marginBottom: "0.5rem",
+                                    color: group.color,
+                                }}
+                            >
+                                {group.name}
+                            </h3>
+                            <p
+                                style={{
+                                    color: "rgba(255,255,255,0.7)",
+                                    fontSize: "0.95rem",
+                                }}
+                            >
+                                {group.description}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+
+                <p
+                    style={{
+                        marginTop: "3rem",
+                        fontSize: "1.1rem",
+                        color: "rgba(255,255,255,0.6)",
+                    }}
+                >
+                    📱 ¡Escanea con tu cámara y únete ahora!
+                </p>
+            </div>
+        </section>
+    );
+}
+
 // Skills Section
 function Skills() {
     const skillCategories = [
@@ -1355,6 +1579,7 @@ export default function Home() {
 
     return (
         <>
+            <CustomCursor />
             <Navigation />
             <main
                 style={{
@@ -1365,10 +1590,13 @@ export default function Home() {
             >
                 <Hero />
                 <RevealOnScroll>
+                    <Projects />
+                </RevealOnScroll>
+                <RevealOnScroll>
                     <About />
                 </RevealOnScroll>
                 <RevealOnScroll>
-                    <Projects />
+                    <Community />
                 </RevealOnScroll>
                 <RevealOnScroll>
                     <Skills />
